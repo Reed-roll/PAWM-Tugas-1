@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newton's Laws of Motion Lab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="lab-container">
+
+        <div class="controls">
+            <h2>Control Panel</h2>
+            <label for="massInput">Mass: </label>
+            <input type="range" id="massInput" min="1" max="10" step="0.1" value="5">
+            <span id="massDisplay">Mass: 5 kg</span>
+            <br><br>
+
+            <label for="gravityInput">Gravity: </label>
+            <input type="range" id="gravityInput" min="0" max="2" step="0.1" value="1">
+            <span id="gravityDisplay">Gravity: 9.8 m/s²</span>
+            <br><br>
+
+            <label for="forceInput">Force (N): </label>
+            <input type="range" id="forceInput" min="0" max="100" step="1" value="20">
+            <span id="forceDisplay">Force: 20 N</span>
+            <br><br>
+
+            <!-- Circular Slider for Angle -->
+            <div id="circular-slider" class="circular-slider">
+                <div id="handle" class="handle"></div>
+            </div>
+            <span id="angleDisplay">Angle: 270°</span>
+            <br><br>
+
+            <div class="button-container">
+                <button id="applyForce">Apply Force</button>
+            </div>
+        </div>
+
+        <div class="simulation">
+            <canvas id="labCanvas"></canvas>
+        </div>
+
+        <div class="info-panel">
+            <h2>Simulation Info</h2>
+            <p>Velocity: <span id="velocityDisplay">0 m/s</span></p>
+            <p>Acceleration: <span id="accelerationDisplay">0 m/s²</span></p>
+            <p>Force Applied: <span id="forceInfo">0 N</span></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
