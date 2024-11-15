@@ -1,17 +1,16 @@
 const express = require('express');
+const { register, login } = require('../controllers/authController');
+const { authenticateToken } = require('../middleware/authMiddleware');
+const dotenv = require('dotenv');
+
+dotenv.config();
+
 const router = express.Router();
-const authController = require('../controllers/authController');
-const authMiddleware = require('../middleware/authMiddleware');
 
 // Register route
-router.post('/register', authController.register);
+router.post('/register', register);
 
 // Login route
-router.post('/login', authController.login);
-
-// Protected route
-router.get('/protected', authMiddleware, (req, res) => {
-    res.status(200).json({ message: 'Protected route', user: req.user });
-});
+router.post('/login', login);
 
 module.exports = router;

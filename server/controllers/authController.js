@@ -24,12 +24,14 @@ exports.register = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        await db.collection('users').doc(username).set({
+        const userData = {
             username,
             email,
             password: hashedPassword,
             createdAt: new Date().toISOString()
-        });
+        };
+
+        await db.collection('users').doc(username).set(userData);
 
         console.log(`User ${username} registered successfully`);
 
@@ -43,10 +45,7 @@ exports.register = async (req, res) => {
             success: true,
             message: 'Registration successful',
             token,
-            user: {
-                username,
-                email
-            }
+            user: userData
         });
 
     } catch (error) {
@@ -62,7 +61,6 @@ exports.login = async (req, res) => {
     const { username, password } = req.body;
 
     try {   
-        // Check if username and password are provided
         if (!username || !password) {
             return res.status(400).json({
                 success: false,
@@ -70,10 +68,7 @@ exports.login = async (req, res) => {
             });
         }
 
-        // Get user from Firebase
         const userDoc = await db.collection('users').doc(username).get();
-        
-        // Check if user exists
         if (!userDoc.exists) {
             return res.status(404).json({
                 success: false,
@@ -81,10 +76,7 @@ exports.login = async (req, res) => {
             });
         }
 
-        // Get user data
         const userData = userDoc.data();
-
-        // Compare passwords
         const isMatch = await bcrypt.compare(password, userData.password);
         
         if (!isMatch) {
@@ -96,14 +88,12 @@ exports.login = async (req, res) => {
 
         console.log(`User ${username} logged in successfully`);
 
-        // Generate JWT
         const token = jwt.sign(
             { username }, 
             process.env.JWT_SECRET, 
             { expiresIn: process.env.JWT_EXPIRES_IN }
         );
 
-        // Send success response
         return res.status(200).json({
             success: true,
             message: 'Login successful',
