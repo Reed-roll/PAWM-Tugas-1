@@ -137,10 +137,10 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 /* Buttons */
-.button-container {
+.force-button-container {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+    margin: 4px;
     flex-wrap: wrap;
 }
 
@@ -211,6 +211,9 @@ select {
     overflow: hidden;
     aspect-ratio: 4/3;
     min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    
 }
 
 #labCanvas {

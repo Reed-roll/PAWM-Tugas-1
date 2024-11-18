@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +10,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
     <header>Newton's Laws of Motion Virtual Lab</header>
-    
+
     <div class="lab-container">
         <div class="controls">
             <h2>Control Panel</h2>
-            
+
             <div class="control-group">
                 <label for="massInput">Mass</label>
                 <input type="range" id="massInput" min="1" max="10" step="0.1" value="5">
@@ -49,20 +51,16 @@
             </div>
 
             <div class="button-container">
-                <button id="applyForce">
-                    <i class="fas fa-arrow-right"></i>
-                    Apply Force
-                </button>
                 <button id="save">
                     <i class="fas fa-save"></i>
                     Save
                 </button>
             </div>
-            
+
             <select id="saveStatesDropdown">
                 <option value="">Select saved state...</option>
             </select>
-            
+
             <div class="button-container">
                 <button id="load">
                     <i class="fas fa-folder-open"></i>
@@ -77,6 +75,12 @@
 
         <div class="simulation">
             <canvas id="labCanvas"></canvas>
+            <div class="force-button-container">
+                <button id="applyForce">
+                    <i class="fas fa-arrow-right"></i>
+                    Apply Force
+                </button>
+            </div>
         </div>
 
         <div class="info-panel">
@@ -98,4 +102,5 @@
 
     <footer>&copy; 2024 Virtual Lab</footer>
 </body>
+
 </html>
